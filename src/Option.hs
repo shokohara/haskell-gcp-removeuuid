@@ -1,8 +1,12 @@
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveAnyClass #-}
 module Option where
 
-import GHC.Int
+import Data.Text
+import Options.Generic
 
 data Option =  Option {
-                      gb :: Int64
-                      , percent :: Float
-                      }
+                      bucketName :: Text
+                      , prefix :: Text
+                      } deriving (Generic, Show, ParseRecord)
+

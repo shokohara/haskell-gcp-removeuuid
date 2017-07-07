@@ -20,11 +20,13 @@ library:
   - process
   - text
   - gogol
-  - gogol-compute
   - gogol-storage
   - http-client
   - lens
   - resourcet
+  - uuid
+  - optparse-generic
+  - pretty-show
 executables:
   removeuuid:
     main: Main.hs
@@ -39,6 +41,7 @@ executables:
     - base
     - removeuuid
     - optparse-applicative
+    - optparse-generic
 tests:
   removeuuid-test:
     main: Spec.hs
