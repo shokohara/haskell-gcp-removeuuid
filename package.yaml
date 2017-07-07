@@ -1,11 +1,11 @@
-name: resizedisk
+name: removeuuid
 version: '0.1.0.0'
 category: Web
 author: Author name here
 maintainer: example@example.com
 copyright: 2017 Author name here
 license: BSD3
-github: shokohara/haskell-resizedisk
+github: shokohara/haskell-removeuuid
 extra-source-files:
 - README.md
 library:
@@ -26,7 +26,7 @@ library:
   - lens
   - resourcet
 executables:
-  resizedisk:
+  removeuuid:
     main: Main.hs
     source-dirs: app
     ghc-options:
@@ -37,10 +37,10 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - base
-    - resizedisk
+    - removeuuid
     - optparse-applicative
 tests:
-  resizedisk-test:
+  removeuuid-test:
     main: Spec.hs
     source-dirs: test
     ghc-options:
@@ -49,7 +49,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - base
-    - resizedisk
+    - removeuuid
     - hspec
     - hspec-discover
 
