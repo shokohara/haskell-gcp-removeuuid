@@ -3,14 +3,14 @@
 module App where
 
 import           Control.Lens ((&), (.~), (<&>), (?~), (^.))
-import           Control.Monad
+--import           Control.Monad
 --import           Control.Monad.IO.Class (MonadIO (..))
 import           Control.Monad.Trans.Resource (runResourceT)
 --import           Data.Maybe
 import           Data.Text (Text)
 import qualified Data.Text as T
 import Debug.Trace
-import           Network.Google
+--import           Network.Google
 import qualified Network.Google as Google
 --import           Network.Google.Storage
 import           Network.Google.Storage as Storage
@@ -18,8 +18,10 @@ import           Network.Google.Storage as Storage
 --import           Network.HTTP.Client
 import           Option
 --import qualified Option as O
-import           System.IO (stdout, hGetContents)
+import           System.IO (stdout)
 --import           System.Process
+
+-- 完全かどうかはここでは判定しない
 
 keyName :: Text
 keyName = "thisiskey"
@@ -34,7 +36,9 @@ run config = do
 --  x <- fun config Nothing >>= \x -> (print . show) x
   --traceIO . show <$> fun config Nothing []
   os <- fun config $ keyPrefix `T.append` "-" `T.append` keyName
-  traceIO . show $ os
+  --traceIO . show $ os
+  sequence $ traceIO . show <$> os ^. oItems
+  return ()
   --mapM_ (traceIO . show) os
 --  return ()
 
@@ -46,4 +50,9 @@ fun c p = do
   lgr <- Google.newLogger Google.Debug stdout
   env <- Google.newEnv <&> (Google.envLogger .~ lgr) . (Google.envScopes .~ Storage.storageFullControlScope)
   runResourceT . Google.runGoogle env $ Google.send $ objectsList (bucketName c) & olPrefix .~ Just p & olMaxResults .~ Just 1000
+-- [uuid-thisiskey-aaa, uuid-thisiskey-aab]
+judge :: [Object] -> [
+-- 誰を残すか
+-- どうやって残すか
+--
 
