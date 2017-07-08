@@ -50,8 +50,8 @@ fun c p = do
   lgr <- Google.newLogger Google.Debug stdout
   env <- Google.newEnv <&> (Google.envLogger .~ lgr) . (Google.envScopes .~ Storage.storageFullControlScope)
   runResourceT . Google.runGoogle env $ Google.send $ objectsList (bucketName c) & olPrefix .~ Just p & olMaxResults .~ Just 1000
--- [uuid-thisiskey-aaa, uuid-thisiskey-aab]
-judge :: [Object] -> [
+-- [uuid-thisiskey-aaa/001.m3u8, uuid-thisiskey-aaa/001.ts, uuid-thisiskey-aab/aab.m3u8, uuid-thisiskey-aab/001.ts]
+judge :: Text -> [Object] -> [
 -- 誰を残すか
 -- どうやって残すか
 --
